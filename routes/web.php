@@ -26,6 +26,6 @@ Route::post('/productos/guardar', [controlador1::class, 'guardarProducto'])->nam
 // Mostrar formulario con producto seleccionado
 Route::get('/productos/editar', [controlador1::class, 'editarProducto'])->name('producto.editar');
 // Actualizar producto
-Route::post('/productos/actualizar/{id}', [controlador1::class, 'actualizarProducto'])->name('producto.actualizar');
+Route::put('/productos/actualizar/{id}', [controlador1::class, 'actualizarProducto'])->name('producto.actualizar');
 // Eliminar producto
 Route::delete('/productos/eliminar/{id}', [controlador1::class, 'eliminarProducto'])->name('producto.eliminar');

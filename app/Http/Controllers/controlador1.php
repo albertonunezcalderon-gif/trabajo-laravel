@@ -145,12 +145,11 @@ public function editarProducto(Request $request)
 
 public function actualizarProducto(Request $request, $id)
 {
-    // Validación
+    // Validación sin stock
     $request->validate([
         'nombre' => 'required|string|max:255',
         'descripcion' => 'required|string',
         'precio' => 'required|numeric|min:0',
-        'stock' => 'required|integer|min:0',
         'categoria_id' => 'required|exists:categorias,id',
         'imagen' => 'nullable|string|max:255',
     ]);
@@ -158,13 +157,14 @@ public function actualizarProducto(Request $request, $id)
     // Buscar el producto
     $producto = Producto::findOrFail($id);
 
-    // Actualizar
-    $producto->update($request->only(['nombre','descripcion','precio','stock','categoria_id','imagen']));
+    // Actualizar solo los campos que existen
+    $producto->update($request->only(['nombre','descripcion','precio','categoria_id','imagen']));
 
-    // Redirigir a la misma página de edición, con el producto todavía seleccionado
+    // Redirigir a la misma página de edición con mensaje
     return redirect()->route('producto.editar', ['producto_id' => $id])
                      ->with('success', 'Producto modificado correctamente.');
 }
+
 
 
 public function eliminarProducto(Request $request, $id)

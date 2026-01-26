@@ -29,32 +29,35 @@
     {{-- Formulario de actualización --}}
     <form action="{{ route('producto.actualizar', $producto->id) }}" method="POST" style="margin-bottom:20px;">
         @csrf
+        @method('PUT') {{-- Necesario para que Laravel lo interprete como PUT --}}
 
         <label>Nombre:</label>
-        <input type="text" name="nombre" value="{{ old('nombre', $producto->nombre) }}"><br><br>
+        <input type="text" name="nombre" value="{{ $producto->nombre }}"><br><br>
 
         <label>Descripción:</label>
-        <textarea name="descripcion">{{ old('descripcion', $producto->descripcion) }}</textarea><br><br>
+        <textarea name="descripcion">{{ $producto->descripcion }}</textarea><br><br>
 
         <label>Precio:</label>
-        <input type="number" name="precio" step="0.01" value="{{ old('precio', $producto->precio) }}"><br><br>
+        <input type="number" name="precio" step="0.01" value="{{ $producto->precio }}"><br><br>
 
         <label>Stock:</label>
-        <input type="number" name="stock" value="{{ old('stock', $producto->stock) }}"><br><br>
+        <input type="number" name="stock" value="{{ $producto->stock }}"><br><br>
 
         <label>Categoría:</label>
         <select name="categoria_id">
             @foreach($categorias as $categoria)
-                <option value="{{ $categoria->id }}" @if(old('categoria_id', $producto->categoria_id) == $categoria->id) selected @endif>
+                <option value="{{ $categoria->id }}" @if($producto->categoria_id == $categoria->id) selected @endif>
                     {{ $categoria->nombre }}
                 </option>
             @endforeach
         </select><br><br>
 
         <label>URL Imagen:</label>
-        <input type="text" name="imagen" value="{{ old('imagen', $producto->imagen) }}"><br><br>
+        <input type="text" name="imagen" value="{{ $producto->imagen }}"><br><br>
 
-        <button type="submit" style="background-color:green; color:white; padding:5px 15px;">Actualizar Producto</button>
+        <button type="submit" style="background-color:green; color:white; padding:5px 15px;">
+            Actualizar Producto
+        </button>
     </form>
 
     {{-- Formulario para eliminar producto --}}
@@ -67,5 +70,3 @@
     </form>
 @endif
 @endsection
-
-

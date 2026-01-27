@@ -138,7 +138,7 @@
             <nav>
                 <a href="/trabajo-laravel/public/">Inicio</a>
                 <a href="/trabajo-laravel/public/productos">Productos</a>
-                <a href="/trabajo-laravel/public/añadir_productos">Añadir Producto</a>
+                <a href="/trabajo-laravel/public/añadir_productos">Comprar Productos</a>
                 <a href="/trabajo-laravel/public/productos/crear">Crear Producto</a>
                 <a href="/trabajo-laravel/public/productos/editar">Editar Producto</a>
             </nav>

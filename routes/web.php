@@ -8,10 +8,6 @@ Route::get('/', [controlador1::class, 'index']);
 
 Route::get('/productos', [controlador1::class, 'productos'])->name('productos');;
 
-
-Route::get('/contacto', [controlador1::class, 'mostrar'])->name('contacto');
-Route::post('/contacto', [controlador1::class, 'enviar'])->name('contacto.enviar');
-
 // Mostrar productos con categorías
 Route::get('/añadir_productos', [controlador1::class, 'añadir_productos'])->name('productos');
 // Guardar pedidos

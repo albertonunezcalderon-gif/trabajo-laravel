@@ -17,7 +17,7 @@
             <img src="{{ $producto->imagen }}" alt="{{ $producto->nombre }}">
             <h3>{{ $producto->nombre }}</h3>
             <p>{{ $producto->descripcion }}</p>
-            <div class="price">${{ $producto->precio }}</div>
+            <div class="price">{{ $producto->precio }}€</div>
         </div>
     @endforeach
 </div>

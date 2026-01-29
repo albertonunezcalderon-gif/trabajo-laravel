@@ -22,7 +22,7 @@
         <div class="producto" style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
             <h3>{{ $producto->nombre }}</h3>
             <p>{{ $producto->descripcion }}</p>
-            <p>Precio: ${{ $producto->precio }}</p>
+            <p>Precio: {{ $producto->precio }}€</p>
             <p>Categoría: {{ $producto->categoria ? $producto->categoria->nombre : 'Sin categoría' }}</p>
 
             @if($producto->imagen)

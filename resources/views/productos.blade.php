@@ -37,7 +37,7 @@
             <h3>{{ $producto->nombre }}</h3>
             <p>{{ $producto->descripcion }}</p>
             <p>Categoría: {{ $producto->categoria->nombre }}</p>
-            <div class="price">${{ $producto->precio }}</div>
+            <div class="price">{{ $producto->precio }}€</div>
         </div>
     @empty
         <p>No se encontraron productos con esos criterios.</p>

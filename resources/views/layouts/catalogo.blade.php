@@ -8,21 +8,21 @@
     <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/f/fb/Minecraft-creeper-face.jpg">
 
     <style>
-        /* Reset básico */
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body { 
             font-family: 'Courier New', Courier, monospace; 
-            background: #a2d149; /* verde hierba estilo Minecraft */
+            background: #a2d149; 
             color: #333;
         }
 
         /* Header */
         header { 
-            background: #5d4037; /* marrón tierra */
+            background: #5d4037; 
             color: #fff; 
             padding: 25px 0; 
-            border-bottom: 5px solid #8d6e63; /* borde estilo bloque */
+            border-bottom: 5px solid #8d6e63;
             text-align: center;
         }
 
@@ -32,7 +32,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #fff;
-            text-shadow: 2px 2px #333; /* efecto pixelado */
+            text-shadow: 2px 2px #333;
         }
 
         nav { 
@@ -51,7 +51,7 @@
         }
 
         nav a:hover { 
-            background: #ffcc00; /* amarillo bloque oro */
+            background: #ffcc00;
             color: #000;
             border-color: #ffcc00;
         }
@@ -72,11 +72,11 @@
         }
 
         .product-card { 
-            background: #cfcfcf; /* gris piedra */
+            background: #cfcfcf; 
             padding: 20px; 
             border-radius: 6px; 
             width: 220px; 
-            box-shadow: 4px 4px 0 #888; /* efecto bloque */
+            box-shadow: 4px 4px 0 #888;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             border: 2px solid #555;
         }

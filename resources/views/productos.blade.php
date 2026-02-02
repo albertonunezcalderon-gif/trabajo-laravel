@@ -8,7 +8,7 @@
 {{-- Formulario de filtros --}}
 <form action="{{ route('productos') }}" method="GET" style="margin-bottom:20px;">
     <label>Nombre:</label>
-    <input type="text" name="nombre" value="{{ request('nombre') }}" placeholder="Buscar por nombre">
+    <input type="text" name="nombre" value="{{ request('nombre') }}" placeholder="Buscar por nombre"> {{-- Utilizamos la función request para obtener el valor en el campo request --}}
 
     <label>Precio mínimo:</label>
     <input type="number" step="0.01" name="precio_min" value="{{ request('precio_min') }}">
@@ -31,7 +31,7 @@
 
 {{-- Listado de productos --}}
 <div class="products">
-    @forelse($productos as $producto)
+    @forelse($productos as $producto) {{-- Este es un bucle que incorpora blade para realizar un if para comprobar si no esta vacío el objeto $productos --}}
         <div class="product-card">
             <img src="{{ $producto->imagen }}" alt="{{ $producto->nombre }}">
             <h3>{{ $producto->nombre }}</h3>
@@ -40,7 +40,7 @@
             <div class="price">{{ $producto->precio }}€</div>
         </div>
     @empty
-        <p>No se encontraron productos con esos criterios.</p>
+        <p>No se encontraron productos con esos criterios.</p> {{-- Si no se encuentra ninguno muestra este mensaje --}}
     @endforelse
 </div>
 @endsection

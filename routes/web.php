@@ -6,7 +6,7 @@ use App\Http\Controllers\controlador1;
 
 Route::get('/', [controlador1::class, 'index']);
 
-Route::get('/productos', [controlador1::class, 'productos'])->name('productos');;
+Route::get('/productos', [controlador1::class, 'productos'])->name('productos');; //Le añado un nombre para asociar este tipo de petición
 
 // Mostrar productos con categorías
 Route::get('/añadir_productos', [controlador1::class, 'añadir_productos'])->name('productos');

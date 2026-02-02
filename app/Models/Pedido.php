@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pedido extends Model
 {
-    // Campos permitidos para asignación masiva
+    // Esto sirve para indicar los campos que están permitidos con asignación masiva y así los campos de las fechas no puedan modificarlos ya que los datos se almacenan mediante objetos.
     protected $fillable = [
         'producto_id',
         'cantidad',

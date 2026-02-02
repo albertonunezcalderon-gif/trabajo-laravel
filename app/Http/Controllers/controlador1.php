@@ -12,19 +12,19 @@ class controlador1 extends Controller
 {
 public function productos(Request $request)
 {
-    $categorias = Categoria::all();
+    $categorias = Categoria::all(); //Aunque obtengas todos los productos con las categorías esto nos sirve para luego mostrar en un select todas las categorías
 
     // Iniciamos la consulta
-    $query = Producto::with('categoria');
+    $query = Producto::with('categoria'); //Obtener los productos añadiendo las categorias es decir todos los registros de los productos con las categorías
 
     // Filtrar por nombre (si existe)
-    if ($request->filled('nombre')) {
+    if ($request->filled('nombre')) { //Sirve para verificar si el campo nombre en la petición no esta vacío
         $query->where('nombre', 'like', '%'.$request->nombre.'%');
     }
 
     // Filtrar por precio mínimo
     if ($request->filled('precio_min')) {
-        $query->where('precio', '>=', $request->precio_min);
+        $query->where('precio', '>=', $request->precio_min); //Realiza una sentencia SQL con eloquend para obtener los que el precio sea menor que precio_min de la petición del formulario
     }
 
     // Filtrar por precio máximo
@@ -49,7 +49,7 @@ public function productos(Request $request)
 
 public function index()
 {
-    // Obtener productos destacados (por ejemplo, los 5 más recientes)
+    // Obtener productos destacados en este caso los últimos 5
     $productosDestacados = Producto::latest()->take(5)->get();
 
     // Obtener todas las categorías
@@ -72,10 +72,6 @@ public function mostrar()
             'mensaje' => 'required|string',
         ]);
 
-        // Aquí podrías enviar un email, guardar en base de datos, etc.
-        // Por ejemplo:
-        // Mail::to('admin@miweb.com')->send(new ContactoMail($request->all()));
-
         return back()->with('success', 'Tu mensaje ha sido enviado correctamente.');
     }
 
@@ -88,7 +84,7 @@ public function mostrar()
 
     public function guardarPedido(Request $request)
     {
-        // Validación básica
+        // Validar el pedido
         $request->validate([
             'producto_id' => 'required|exists:productos,id',
             'cantidad' => 'required|integer|min:1',
@@ -117,10 +113,10 @@ public function guardarProducto(Request $request)
         'precio' => 'required|numeric|min:0',
         'stock' => 'required|integer|min:0',
         'categoria_id' => 'required|exists:categorias,id',
-        'imagen' => 'nullable|string|max:255', // solo texto URL
+        'imagen' => 'nullable|string|max:255',
     ]);
 
-    // Tomar los datos directamente
+    // Tomar los datos solamente nombre, descripción, precio, stock, categoria_id, imagen
     $datos = $request->only(['nombre','descripcion','precio','stock','categoria_id','imagen']);
 
     // Crear el producto
@@ -136,7 +132,7 @@ public function editarProducto(Request $request)
     $producto = null;
 
     // Selección del producto desde el select
-    if ($request->has('producto_id') && $request->producto_id != '') {
+    if ($request->filled('producto_id')) {
         $producto = Producto::findOrFail($request->producto_id);
     }
 
@@ -145,7 +141,7 @@ public function editarProducto(Request $request)
 
 public function actualizarProducto(Request $request, $id)
 {
-    // Validación sin stock
+    // Validación
     $request->validate([
         'nombre' => 'required|string|max:255',
         'descripcion' => 'required|string',
@@ -160,7 +156,7 @@ public function actualizarProducto(Request $request, $id)
     // Actualizar solo los campos que existen
     $producto->update($request->only(['nombre','descripcion','precio','categoria_id','imagen']));
 
-    // Redirigir a la misma página de edición con mensaje
+    // Redirigir a la misma página de edición con el mensaje
     return redirect()->route('producto.editar', ['producto_id' => $id])
                      ->with('success', 'Producto modificado correctamente.');
 }
@@ -173,7 +169,6 @@ public function eliminarProducto(Request $request, $id)
     $producto->delete();
 
     // Redirigir explícitamente a la página de editar productos
-    // Opcional: no pasar producto_id si se eliminó el que estaba seleccionado
     return redirect()->route('producto.editar')->with('success', 'Producto eliminado correctamente.');
 }
 

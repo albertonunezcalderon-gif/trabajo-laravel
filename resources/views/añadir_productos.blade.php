@@ -1,18 +1,12 @@
 @extends('layouts.catalogo')
 
-@section('title', 'Lista de Productos') {{-- Cambiado de Contacto a Lista de Productos --}}
+@section('title', 'Lista de Productos')
 
 @section('content')
 
 @if(session('success'))
     <div style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
         {{ session('success') }}
-    </div>
-@endif
-
-@if(session('error'))
-    <div style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
-        {{ session('error') }}
     </div>
 @endif
 
@@ -23,7 +17,7 @@
             <h3>{{ $producto->nombre }}</h3>
             <p>{{ $producto->descripcion }}</p>
             <p>Precio: {{ $producto->precio }}€</p>
-            <p>Categoría: {{ $producto->categoria ? $producto->categoria->nombre : 'Sin categoría' }}</p>
+            <p>Categoría: {{ $producto->categoria ? $producto->categoria->nombre : 'Sin categoría' }}</p> // {{-- Si el producto tiene categoría, muestra el nombre de la categoría si no muestra sin categoría --}}
 
             @if($producto->imagen)
                 <img src="{{ $producto->imagen }}" alt="{{ $producto->nombre }}" width="150">

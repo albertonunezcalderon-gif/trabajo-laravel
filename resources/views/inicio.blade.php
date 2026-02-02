@@ -3,7 +3,7 @@
 @section('title', 'Inicio')
 
 @section('content')
-<!-- Banner principal -->
+
 <div class="banner" style="background:#232f3e; color:#fff; padding:40px; text-align:center;">
     <h2>Bienvenido a Mi Catálogo</h2>
     <p>Encuentra los mejores productos al mejor precio</p>

@@ -30,7 +30,7 @@
         <select name="categoria_id" required>
             <option value="">Selecciona una categoría</option>
             @foreach($categorias as $categoria)
-                <option value="{{ $categoria->id }}" {{ old('categoria_id') == $categoria->id ? 'selected' : '' }}>
+                <option value="{{ $categoria->id }}" {{ old('categoria_id') == $categoria->id ? 'selected' : '' }}> {{-- Esto indica que con la función helper old que obtenga el último valor que se agrego a este campo en la última petición y que si es igual que el id de una categoría que lo seleccione --}}
                     {{ $categoria->nombre }}
                 </option>
             @endforeach
